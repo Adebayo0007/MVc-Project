@@ -1,0 +1,115 @@
+﻿@model IEnumerable<SMS_MVCDTO.Models.DTOs.AttendantDTOs.AttendantResponseModel>
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+@{
+    if (TempData["Success"] != null)
+    {
+        <h2>@TempData["success"]</h2>
+    }
+    if (TempData["failed"] != null)
+    {
+        <h2>@TempData["failed"]</h2>
+    }
+}
+
+
+<h1>Result</h1>
+
+<div class="container1">
+
+    <div class="box box2">
+        <form asp-action="GetByStaffId">
+            <input type="search" placeholder="Search by ID.." aria-label="Search" name="staffId">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="box box3">
+        <form asp-controller="Attendant" asp-action="GetByEmail">
+            <input type="text" placeholder="Search by Email.." name="email">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="box box4">
+        <form asp-action="GetByName">
+            <input type="text" placeholder="Search by Name.." name="name">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+</div>
+
+
+
+<div class="container">
+
+    <div class="box box1"> side bar </div>
+</div>
+
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table table-info">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Data.StaffId)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Data.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data.LastName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Data.Gender)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Data.UserRole)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data.StaffId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data.LastName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data.Gender)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data.UserRole)
+                </td>
+
+
+                <td>
+
+                    <a asp-action="Details" asp-route-staffId="@item.Data.StaffId">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

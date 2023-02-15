@@ -1,0 +1,143 @@
+﻿@model IEnumerable<SMS_MVCDTO.Models.DTOs.TransactionDTOs.TransactionResponseModel>
+
+@{
+
+    ViewData["Title"] = "Transaction";
+    if (TempData["success"] != null)
+    {
+        <h2>@TempData["success"]</h2>
+    }
+
+    if (TempData["failed"] != null)
+    {
+        <h2>@TempData["failed"]</h2>
+    }
+
+}
+
+
+
+
+<main class="main">
+    <!-- <div class="dashboard"> -->
+    <div class="form-container">
+
+        <!-- Signup Form -->
+        <h1>Transactions...</h1>
+
+
+        <div id="">
+
+            <table class="table table-info">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+
+                        <th>
+                            <label> Ref. No</label>
+                        </th>
+
+                        <th>
+                            <label> Date</label>
+                        </th>
+
+                        <th>
+                            <label> Customer</label>
+                        </th>
+
+                        <th>
+                            <label> Amount </label>
+                        </th>
+
+                        <th></th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    @{
+                        int serialNumber = 1;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @* Numbering *@
+                                @serialNumber
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Data.ReferenceNo)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Data.Created)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem =>
+                            item.Data.CustomerName)
+                            </td>
+
+
+                            <td>
+                                &#x20A6;@Html.DisplayFor(modelItem =>
+                            item.Data.TotalAmount)
+                            </td>
+
+                            <td>
+                                <a asp-controller="Transaction" asp-action="Details"
+                               asp-route-ReferenceNo="@item.Data.ReferenceNo">Details</a>
+                            </td>
+                        </tr>
+                        serialNumber++;
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- search box  -->
+    <div class="search-container-side">
+
+        <!-- search box  -->
+        <div class="search-container">
+            <form asp-controller="Product" asp-action="GetById">
+                <input type="text" placeholder="Barcode..." name="barCode">
+                <button type="submit">
+                    <i class="fa fa-search"></i> Search
+                </button>
+            </form>
+        </div>
+
+        <!-- search box  -->
+        <div class="search-container">
+            <form asp-controller="Transaction" asp-action="Details">
+                <input type="text" placeholder="Transaction ref..." name="referenceNo">
+                <button type="submit">
+                    <i class="fa fa-search"></i> Search
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

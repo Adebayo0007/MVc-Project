@@ -1,0 +1,178 @@
+﻿@*@model SMS_MVCDTO.Models.DTOs.ProductDTOs.ProductResponseModel*@
+@*@model ProductTransactionViewModel*@
+@model SMS_MVCDTO.Models.ViewModels.CreateProductTransactionViewModel
+
+
+@{/*
+    ViewData["Title"] = "Edit";
+@{
+    if (TempData["success"] != null)
+    {
+        <h2>@TempData["success"]</h2>
+    }
+    if (TempData["failed"] != null)
+    {
+        <h2>@TempData["failed"]</h2>
+    }
+}
+
+*/}
+<h1> Buy</h1>
+<hr />
+    
+
+<div class="col-md-4">
+    @using (Html.BeginForm("Create", "Transaction"))
+    {
+
+        <div class="form-group">
+            @Html.HiddenFor(x => x.Product.Data.Barcode, new {@class = "form-control"})
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Product.Data.Name, new {@class = "control-label"})
+            @Html.TextBoxFor(x => x.Product.Data.Name, new {@class = "form-control", @readonly="readonly"})
+            @Html.ValidationMessageFor(x => x.Product.Data.Name,"", new {@class="text-danger"})
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Product.Data.SellingPrice, new {@class = "control-label"})
+            @Html.TextBoxFor(x => x.Product.Data.SellingPrice, new {@class = "form-control", @readonly = "readonly"} )
+            @Html.ValidationMessageFor(x => x.Product.Data.SellingPrice,"", new {@class="text-danger"})
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Transaction.Quantity, new {@class = "control-label"})
+            @Html.TextBoxFor(x => x.Transaction.Quantity, new {@class = "form-control"})
+            @Html.ValidationMessageFor(x => x.Transaction.Quantity,"", new {@class="text-danger"})
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(x => x.Transaction.CustomerId, new {@class = "control-label"})
+            @Html.TextBoxFor(x => x.Transaction.CustomerId, new {@class = "form-control"})
+            @Html.ValidationMessageFor(x => x.Transaction.CustomerId,"", new {@class="text-danger"})
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(x => x.Transaction.AttendantId, new {@class = "control-label"})
+            @Html.TextBoxFor(x => x.Transaction.AttendantId, new {@class = "form-control"})
+            @Html.ValidationMessageFor(x => x.Transaction.AttendantId,"", new {@class="text-danger"})
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(x => x.TempTotal, new {@class = "control-label"})
+            @Html.TextBoxFor(x => x.TempTotal, new {@class = "form-control"})
+            @Html.ValidationMessageFor(x => x.TempTotal,"", new {@class="text-danger"})
+        </div>
+
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Add</button>
+        </div>
+    }
+</div>
+@section scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+@{ /*
+@{
+    ViewData["Title"] = "Create";
+}
+@{
+    if (TempData["success"] != null)
+    {
+        <h2>@TempData["success"]</h2>
+    }
+    if (TempData["failed"] != null)
+    {
+        <h2>@TempData["failed"]</h2>
+    }
+}
+
+<h1> ADD CATEGORY</h1>
+<hr />
+<div class="col-md-4">
+    @using (Html.BeginForm("Create", "Transaction"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(x => x.BarCode, new {@class = "control-label"})
+            @Html.TextBoxFor(x => x.BarCode, new {@class = "form-control"})
+            @Html.ValidationMessageFor(x => x.BarCode,"", new {@class="text-danger"})
+        </div>
+
+        @*<div class="form-group">
+    @Html.LabelFor(x => x.ReferenceNo, new {@class = "control-label"})
+    @Html.TextBoxFor(x => x.ReferenceNo, new {@class = "form-control"})
+    @Html.ValidationMessageFor(x => x.ReferenceNo,"", new {@class="text-danger"})
+    </div>
+    *@
+        <div class="form-group">
+            @Html.LabelFor(x => x.Quantity, new {@class = "control-label"})
+            @Html.TextBoxFor(x => x.Quantity, new {@class = "form-control"})
+            @Html.ValidationMessageFor(x => x.Quantity,"", new {@class="text-danger"})
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Add</button>
+        </div>
+    }
+</div>
+@section scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+               
+     * @model SMS_MVCDTO.Models.DTOs.TransactionDTOs.CreateTransactionRequestModel
+
+
+@{
+ViewData["Title"] = "Create";
+}
+@{
+if (TempData["success"] != null)
+{
+    <h2>@TempData["success"]</h2>
+}
+if (TempData["failed"] != null)
+{
+    <h2>@TempData["failed"]</h2>
+}
+}
+
+<h1> ADD CATEGORY</h1>
+<hr />
+<div class="col-md-4">
+@using (Html.BeginForm("Create", "Transaction"))
+{
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.BarCode, new {@class = "control-label"})
+        @Html.TextBoxFor(x => x.BarCode, new {@class = "form-control"})
+        @Html.ValidationMessageFor(x => x.BarCode,"", new {@class="text-danger"})
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Quantity, new {@class = "control-label"})
+        @Html.TextBoxFor(x => x.Quantity, new {@class = "form-control"})
+        @Html.ValidationMessageFor(x => x.Quantity,"", new {@class="text-danger"})
+    </div>
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Add</button>
+    </div>
+}
+</div>
+@section scripts {
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+     }
+         }
+    */
+            }

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SMS_MVCDTO.Models.DTOs.SalesManagerDTOs.SalesManagerResponseModel>
+
+@{
+    ViewData["Title"] = "Home || Sales Manager ";
+}
+@{
+    if (TempData["Success"] != null)
+    {
+        <h2>@TempData["success"]</h2>
+    }
+    if (TempData["failed"] != null)
+    {
+        <h2>@TempData["failed"]</h2>
+    }
+}
+
+
+<h1>Sales manager Dashboard</h1>
+
+
+<div class="dropdown">
+    <button class="dropbtn"> Manage Attendant</button>
+    <div class="dropdown-menu">
+        <a asp-controller="Attendant" asp-action="Dashboard"> Dashboard </a>
+        <br />
+        <a asp-controller="Attendant" asp-action="Create">Add new attendant</a>
+        <br />
+
+    </div>
+</div>
+
+<div class="dropdown">
+    <button class="dropbtn"> Manage Product</button>
+    <div class="dropdown-menu">
+        <a asp-controller="Product" asp-action="Dashboard"> Dashboard</a>
+        <br />
+        <a asp-controller="Product" asp-action="Create">Add new product</a>
+        <br />
+        @* <a asp-controller="Product" asp-action="Index">Manage all products</a>
+        <br />*@
+    </div>
+</div>
+<a asp-controller="Transaction" asp-action="Dashboard">Manage Transactions</a>
+<br />
+<a asp-controller="Product" asp-action="Dashboard">Manage Inventory</a>
+<br />
+<br />
+<br />
